@@ -1,4 +1,4 @@
-# daily_planner
+# Daily_Planner
 
 ## User Story
 AS AN employee with a busy schedule  
