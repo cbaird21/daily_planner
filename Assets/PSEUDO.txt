@@ -1,0 +1,17 @@
+
+-Add event listener with click events on the save button.
+-Create and object to store the data in that div on the page. 
+-console.log to ensure you're storing the data
+-call the data in memory
+-ensure that when you hit refresh the previous typed data is visible. style.attri.visible?
+
+-link date and time to page
+-call the data to stay on the page 
+
+-add class to timeblocks that you can connect current time.
+-how do I make sure the time on the page communicates with the timezone logged.
+-create affect of color change when the time 
+zone has passed, is present and future.
+-must be set in the 24 hour time 
+
+
