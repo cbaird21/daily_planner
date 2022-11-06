@@ -16,12 +16,12 @@
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-var currentTime = dayjs();
 var currentDay = $("#currentDay");
 var textArea = $("textarea", this).val();
 var appointments = [];
 var hoursEl = $("#hours", this).children();
 
+// empty array to go through on page for matching to time clock
 var timesArr= [];
 i=0;
 $("div.row").each(function (){
@@ -31,7 +31,7 @@ console.log(timesArr);
 
 
 $(function () {
-  console.log(hoursEl);
+  // console.log(hoursEl);
 
   var day = dayjs();
   window.onload = displayClock();
@@ -68,7 +68,7 @@ $(function () {
 
     // textArea.text(localStorage.getItem("appointments")) || [];
 
-    console.log(textArea);
+    // console.log(textArea);
     // for (var i = 0; i < appointments.length; i++){
     //   textArea.textContent = ${textArea[i].userInput};
     //   textArea.append('userInput');

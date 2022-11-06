@@ -1,6 +1,15 @@
+create variables
+-current time
+-current date
+-storage of text input
+-array of time in the work day
+-string of arrays of text input stored properly
+
+
+
 
 -Add event listener with click events on the save button.
--Create and object to store the data in that div on the page. 
+-Create and object to store the data in  on the page. 
 -console.log to ensure you're storing the data
 -call the data in memory
 -ensure that when you hit refresh the previous typed data is visible. style.attri.visible?
