@@ -48,7 +48,7 @@ function displayAppointments() {
   });
 }
 
-
+ 
 checkTime();
 displayAppointments();
 // localStorage.clear();

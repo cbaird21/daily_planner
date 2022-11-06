@@ -24,3 +24,13 @@ THEN the saved events persist
 ## Mock-Up
 
 ![Alt text](Assets/05-third-party-apis-homework-demo.gif)
+
+## Deployed Application
+
+https://cbaird21.github.io/daily_planner/
+![Alt text](Assets/images/Daily-planner.png)
+
+## Credits
+
+Starter Code: https://github.com/coding-boot-camp/crispy-octo-meme
+
