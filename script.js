@@ -1,78 +1,57 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-// TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does this reference in the click listener
-    //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 var currentDay = $("#currentDay");
-var textArea = $("textarea", this).val();
 var appointments = [];
-var hoursEl = $("#hours", this).children();
-
-// empty array to go through on page for matching to time clock
-var timesArr= [];
-i=0;
-$("div.row").each(function (){
-  timesArr[i++] = $(this).attr("data-hour");
-});
-console.log(timesArr);
-
+var saveBtn = $('.saveBtn')
+var timeBlockEl = $('.time-block');
+var day = dayjs();
 
 $(function () {
-  // console.log(hoursEl);
-
+  // create variable for day
   var day = dayjs();
   window.onload = displayClock();
+  // display clock function 
   function displayClock() {
   var liveTime = new Date().toLocaleTimeString();
-
+// how to display the current date with liveTime
   currentDay.text(day.format("MM DD, YYYY") + " " + liveTime);
   setTimeout(displayClock, 1000);
   }
-  
-  function checkTime(){
-    for ( var i = 0; 1 < timesArr.length; i++){
-      var hoursOfDay = timesArr[i];
-      var NumHoursOfDay = parseInt(hoursOfDay);
-      console.log(NumHoursOfDay);
-      console.log(liveTime);
-    }
+
+  function checkTime() {
+    var hour = day.hour();
+    
+    timeBlockEl.each(function (){
+      var currentBlock = parseInt($(this).attr("id"));
+
+      if (currentBlock > hour) {
+        $(this).addClass("future");
+
+      } else if (currentBlock === hour) {
+        $(this).addClass("present");
+
+      } else {
+        $(this).addClass("past");
+      }
+    });
   }
- 
 
-  $(document).on("click", ".saveBtn", function () {
-    // DOM traversal can be used to get the "hour-x" id of the parent element a.k.a ->
-    var parentEl = $(this).parent();
+  saveBtn.on("click", function () {
+    // this is creating the item of what is input in the divs to store the text of sibling of the row 
+   var time = $(this).siblings(".row").text();
+   var appointments = $(this).siblings(".description").val();
+   localStorage.setItem(time,appointments);
+  })
 
-    var userInputObject = {
-      id: parentEl[0].id,
-      userInput: parentEl[0].children[1].value,
-    };
-    appointments.push(userInputObject);
-    localStorage.setItem("appointments", JSON.stringify(appointments));
+  function displayAppointments() {
+    $('.row').each(function(){
+      var textInput = $(this).text();
+      var userInput = localStorage.getItem(textInput);
 
-    console.log(localStorage.appointments);
-    console.log(parentEl[0].id);
+      if (userInput !== null){
+        $(this).siblings(".description").val(userInput);
+      }
+    })
+  }
 
-    // textArea.text(localStorage.getItem("appointments")) || [];
-
-    // console.log(textArea);
-    // for (var i = 0; i < appointments.length; i++){
-    //   textArea.textContent = ${textArea[i].userInput};
-    //   textArea.append('userInput');
-    // }
-  });
-})
-  // .then(function displayApp() 
+  checkTime();
+  displayAppointments();
+});
